@@ -6,6 +6,8 @@ TagManager:
   tags:
   - New tag
   - Enemy
+  - AttackObject
+  - Shield
   layers:
   - Default
   - TransparentFX
