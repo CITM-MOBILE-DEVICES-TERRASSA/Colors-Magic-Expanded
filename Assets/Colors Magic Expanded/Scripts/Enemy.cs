@@ -8,10 +8,12 @@ public class Enemy : MonoBehaviour
     [Header("References")]
     public ColorMatch colorMatch;           // Referencia al script ColorMatch para obtener el color objetivo
     public Image enemyColorDisplay;         // Cuadro para mostrar el color actual de la IA
+    public SpecialAttack specialAttack;     // Referencia al script de Special Attack
 
     [Header("Settings")]
     public float adjustmentSpeed = 0.002f;  // Velocidad de ajuste por movimiento
     public float moveInterval = 0.1f;       // Tiempo entre movimientos en segundos
+    public float specialAttackInterval = 5f; // Tiempo entre intentos de ataque especial
 
     [Header("Color Data")]
     private Color currentColor;             // Color actual de la IA
@@ -27,6 +29,16 @@ public class Enemy : MonoBehaviour
 
         // Comenzar el ciclo de movimientos de la IA
         InvokeRepeating(nameof(WaitForColorGeneration), 0.1f, 0.1f);
+
+        // Comenzar el ciclo para el ataque especial
+        if (specialAttack != null)
+        {
+            InvokeRepeating(nameof(TrySpecialAttack), specialAttackInterval, specialAttackInterval);
+        }
+        else
+        {
+            Debug.LogWarning("SpecialAttack no asignado al enemigo.");
+        }
     }
 
     public void ResetColor()
@@ -71,6 +83,14 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.LogError("EnemyColorDisplay no asignado.");
+        }
+    }
+
+    private void TrySpecialAttack()
+    {
+        if (specialAttack != null)
+        {
+            specialAttack.TriggerSpecialAttack();
         }
     }
 
