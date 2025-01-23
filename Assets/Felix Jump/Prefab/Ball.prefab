@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceForce: 3
-  ballPrefab: {fileID: 0}
+  ballPrefab: {fileID: 353864344936485748}
   jump1: {fileID: 732764459966483327}
   jump2: {fileID: 4805778828638342495}
   jump3: {fileID: 6034649441281515487}
