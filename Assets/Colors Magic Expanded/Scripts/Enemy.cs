@@ -50,6 +50,30 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        CheckForTargetColorChange(); // Verificar si el color objetivo ha cambiado
+    }
+
+    private void CheckForTargetColorChange()
+    {
+        if (colorMatch != null && colorMatch.TargetColor != Color.black)
+        {
+            // Si el color objetivo cambia o el enemigo no está listo, actualizar el objetivo
+            if (!isReady || targetColor != colorMatch.TargetColor)
+            {
+                targetColor = colorMatch.TargetColor;
+                isReady = true;
+
+                Debug.Log("Nuevo color objetivo asignado: " + targetColor);
+
+                // Reiniciar el movimiento hacia el nuevo objetivo
+                CancelInvoke(nameof(MoveTowardsTarget));
+                InvokeRepeating(nameof(MoveTowardsTarget), moveInterval, moveInterval);
+            }
+        }
+    }
+
     public void TakeDamage(int damage = 0)
     {
         // Reducir la vida del jugador
