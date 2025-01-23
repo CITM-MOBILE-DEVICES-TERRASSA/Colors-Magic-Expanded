@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
         // Reiniciar los sliders al máximo
         if (healthSlider != null)
         {
-            healthSlider.value = maxHealth;
+            healthSlider.value = currentHealth / maxHealth;
         }
         else
         {
