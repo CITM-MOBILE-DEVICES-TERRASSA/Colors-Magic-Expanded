@@ -68,7 +68,12 @@ public class CombatManager : MonoBehaviour
         if (player.GetHealth() <= 0 || enemy.GetHealth() <= 0)
         {
             gameOver = true;
-            winner = player.GetHealth() <= 0 ? "Enemigo" : "Jugador";
+            if (player.GetHealth() <= 0)
+            {
+                winner = "Enemigo";
+            }
+            else winner = "Player";
+            //winner = player.GetHealth() <= 0 ? "Enemigo" : "Jugador";
             Debug.Log($"¡El ganador es: {winner}!");
 
             End();

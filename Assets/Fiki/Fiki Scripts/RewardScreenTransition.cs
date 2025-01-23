@@ -28,12 +28,12 @@ public class RewardScreenTransition : MonoBehaviour
     }
 
     public void PlayAgain() {
-        LevelTransitionController.instance.StartTransition(3, 2);
+        LevelTransitionController.instance.StartTransition(9, 2);
     }
 
     public void RetunMenu() {
 
-        LevelTransitionController.instance.StartTransition(2, 2);
+        LevelTransitionController.instance.StartTransition(1, 2);
     }
 
 }
