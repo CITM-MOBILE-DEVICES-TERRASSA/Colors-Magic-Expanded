@@ -8,12 +8,10 @@ public class Player : MonoBehaviour
     [Header("References")]
     public Image playerColorDisplay;         // Referencia al cuadro que muestra el color actual del jugador
     public Slider healthSlider;              // Referencia al slider de vida
-    public Slider energySlider;              // Referencia al slider de energía
 
     [Header("Settings")]
     public Color defaultColor = Color.white; // Color predeterminado del jugador
     public float maxHealth = 100f;           // Máxima cantidad de vida
-    public float maxEnergy = 100f;           // Máxima cantidad de energía
     public float damageAmount = 20f;         // Cantidad de daño recibido por el ataque especial
 
     private Color currentColor;              // Color actual del jugador
@@ -25,7 +23,6 @@ public class Player : MonoBehaviour
         // Inicializar valores
         currentColor = defaultColor;
         currentHealth = maxHealth;
-        currentEnergy = maxEnergy;
 
         // Actualizar la interfaz al inicio
         UpdatePlayerUI();
@@ -76,15 +73,6 @@ public class Player : MonoBehaviour
         {
             Debug.LogWarning("HealthSlider no asignado.");
         }
-
-        if (energySlider != null)
-        {
-            energySlider.value = currentEnergy / maxEnergy;
-        }
-        else
-        {
-            Debug.LogWarning("EnergySlider no asignado.");
-        }
     }
 
     private void UpdatePlayerUI()
@@ -93,11 +81,6 @@ public class Player : MonoBehaviour
         if (healthSlider != null)
         {
             healthSlider.value = currentHealth / maxHealth;
-        }
-
-        if (energySlider != null)
-        {
-            energySlider.value = currentEnergy / maxEnergy;
         }
 
         if (playerColorDisplay != null)
