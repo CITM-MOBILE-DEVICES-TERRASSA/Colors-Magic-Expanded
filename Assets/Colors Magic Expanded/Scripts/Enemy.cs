@@ -9,16 +9,20 @@ public class Enemy : MonoBehaviour
     public ColorMatch colorMatch;           // Referencia al script ColorMatch para obtener el color objetivo
     public Image enemyColorDisplay;         // Cuadro para mostrar el color actual de la IA
     public SpecialAttack specialAttack;     // Referencia al script de Special Attack
+    public Slider healthSlider;              // Referencia al slider de vida
 
     [Header("Settings")]
     public float adjustmentSpeed = 0.002f;  // Velocidad de ajuste por movimiento
     public float moveInterval = 0.1f;       // Tiempo entre movimientos en segundos
     public float specialAttackInterval = 5f; // Tiempo entre intentos de ataque especial
+    public float maxHealth = 100f;           // Máxima cantidad de vida
+    public float damageAmount = 20f;         // Cantidad de daño recibido por el ataque especial
 
     [Header("Color Data")]
     private Color currentColor;             // Color actual de la IA
     private Color targetColor;              // Referencia al color objetivo
     private Color defaultColor = Color.black;
+    private float currentHealth;            // Vida actual del enemigo
 
     private bool isReady = false;
 
@@ -26,6 +30,9 @@ public class Enemy : MonoBehaviour
     {
         // Inicializar el color de la IA
         currentColor = defaultColor;
+        currentHealth = maxHealth;
+
+        UpdateEnemyUI();
 
         // Comenzar el ciclo de movimientos de la IA
         InvokeRepeating(nameof(WaitForColorGeneration), 0.1f, 0.1f);
@@ -41,12 +48,43 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int damage = 0)
+    {
+        // Reducir la vida del jugador
+        currentHealth -= damage;
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+
+        // Reiniciar el color del jugador
+        ResetColor();
+
+        // Reiniciar los sliders
+        ResetSliders();
+
+        Debug.Log("Jugador golpeado por el ataque especial. Vida restante: " + currentHealth);
+    }
+
     public void ResetColor()
     {
         // Resetear el color de la IA
         currentColor = defaultColor;
 
         Debug.Log("El color del enemigo ha sido reseteado.");
+    }
+
+    private void ResetSliders()
+    {
+        // Reiniciar los sliders al máximo
+        if (healthSlider != null)
+        {
+            healthSlider.value = currentHealth / maxHealth;
+        }
+        else
+        {
+            Debug.LogWarning("HealthSlider no asignado.");
+        }
     }
 
     // Método que se ejecuta en cada cuadro para verificar si el color objetivo ya fue generado
@@ -94,9 +132,23 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void UpdateEnemyUI()
+    {
+        // Actualizar los sliders y el color inicial
+        if (healthSlider != null)
+        {
+            healthSlider.value = currentHealth / maxHealth;
+        }
+    }
+
     public Color GetCurrentColor()
     {
         return currentColor;
+    }
+
+    public float GetHealth()
+    {
+        return currentHealth;
     }
 }
 

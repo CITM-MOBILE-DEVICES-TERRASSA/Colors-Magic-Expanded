@@ -10,7 +10,7 @@ public class EnemyUI : MonoBehaviour
     {
         if(enemy != null)
         {
-            enemy.ResetColor();
+            enemy.TakeDamage();
         }
     }
 }

@@ -30,6 +30,8 @@ public class LevelManager : MonoBehaviour
         levelText.text = "Current Level " + PlayerPrefs.GetInt("LevelsUnlocked", 1);
 
         ColorsMagic = FindAnyObjectByType<ColorsMagic>();
+
+        //levelButtons[9].interactable = true;    
     }
 
     public void StartLevel(int level)
@@ -38,5 +40,10 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.Save();
         //SceneManager.LoadScene("GameP");
         ColorsMagic.ChangeToScene("GameP");
+    }
+
+    public void BackToMeta()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 }
