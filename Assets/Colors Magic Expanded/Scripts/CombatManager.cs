@@ -11,6 +11,7 @@ public class CombatManager : MonoBehaviour
     public Enemy enemy;                 // Referencia al enemigo
     public Animator playerAnimator;
     public Animator enemyAnimator;
+    ColorsMagicExpanded ColorsMagic;
 
     [Header("Game State")]
     public bool gameOver = false;       // Indica si el juego ha terminado
@@ -25,6 +26,8 @@ public class CombatManager : MonoBehaviour
 
     private void Start()
     {
+        ColorsMagic = FindAnyObjectByType<ColorsMagicExpanded>();
+
         // Iniciar el temporizador al comienzo de cada ronda
         timer = roundTime;
         colorMatch.GenerateTargetColor(); // Generar un nuevo color objetivo
@@ -62,6 +65,8 @@ public class CombatManager : MonoBehaviour
             gameOver = true;
             winner = player.GetHealth() <= 0 ? "Enemigo" : "Jugador";
             Debug.Log($"¡El ganador es: {winner}!");
+
+            End();
         }
         else
         {
@@ -69,6 +74,25 @@ public class CombatManager : MonoBehaviour
             timer = roundTime;
             colorMatch.GenerateTargetColor();
             UpdateTimerText();
+        }
+    }
+
+    private void End()
+    {
+        if (winner == "Enemigo")
+        {
+            ColorsMagic.ChangeToScene("DefeatCME");
+        }
+        else
+        {
+            int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+            int levelsUnlocked = PlayerPrefs.GetInt("LevelsUnlocked", 1);
+            if (currentLevel >= levelsUnlocked)
+            {
+                PlayerPrefs.SetInt("LevelsUnlocked", currentLevel + 1);
+                PlayerPrefs.Save();
+            }
+            ColorsMagic.ChangeToScene("VictoryCME");
         }
     }
 
