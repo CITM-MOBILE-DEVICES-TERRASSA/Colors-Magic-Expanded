@@ -15,7 +15,7 @@ public class ColorsMagic : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Persiste todo el GameObject, incluida la imagen.
+           /* DontDestroyOnLoad(gameObject);*/ // Persiste todo el GameObject, incluida la imagen.
         }
         else
         {
