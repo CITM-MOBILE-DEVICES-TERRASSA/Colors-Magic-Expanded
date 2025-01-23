@@ -89,19 +89,32 @@ public class CombatManager : MonoBehaviour
 
     private void End()
     {
+        int currentScore = PlayerPrefs.GetInt("ScoreCME", 0);
+
         if (winner == "Enemigo")
         {
+            currentScore -= 30;
+            PlayerPrefs.SetInt("ScoreCME", currentScore);
+            PlayerPrefs.Save();
+
             ColorsMagic.ChangeToScene("DefeatCME");
         }
         else
         {
+            currentScore += 50;
+            PlayerPrefs.SetInt("ScoreCME", currentScore);
+
+            // Unlock new level if necessary
             int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
             int levelsUnlocked = PlayerPrefs.GetInt("LevelsUnlocked", 1);
+
             if (currentLevel >= levelsUnlocked)
             {
                 PlayerPrefs.SetInt("LevelsUnlocked", currentLevel + 1);
-                PlayerPrefs.Save();
             }
+
+            PlayerPrefs.Save();
+
             ColorsMagic.ChangeToScene("VictoryCME");
         }
     }
