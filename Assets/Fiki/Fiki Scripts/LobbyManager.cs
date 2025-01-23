@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -45,6 +46,11 @@ public class LobbyManager : MonoBehaviour
     public void PlayButton()
     {
         LevelTransitionController.instance.StartTransition(9, 2);
+    }
+
+    public void BackButton()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 
 }
