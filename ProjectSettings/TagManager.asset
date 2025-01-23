@@ -7,9 +7,16 @@ TagManager:
   - New tag
   - Enemy
   - AttackObject
-  - Shield
   - EnemyUI
   - PlayerUI
+  - Ball
+  - SpawnZone
+  - Ground
+  - Snake
+  - CutMark
+  - Cuttable
+  - PlayerShield
+  - EnemyShield
   layers:
   - Default
   - TransparentFX
