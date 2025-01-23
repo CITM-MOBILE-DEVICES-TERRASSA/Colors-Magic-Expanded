@@ -30,20 +30,43 @@ public class ColorMatch : MonoBehaviour
         Debug.Log("Color objetivo generado: " + targetColor);
     }
 
-    public bool CheckMatch()
+    public float CalculatePrecision(Color color)
     {
-        // Obtener el color actual del jugador
-        Color playerColor = playerRGBSlides.currentColor;
-
-        // Calcular la diferencia entre los colores (distancia euclidiana en RGB)
+        // Calcular la distancia entre el color del jugador y el color objetivo
+        float maxDistance = Mathf.Sqrt(3); // Distancia máxima posible (1,1,1) a (0,0,0)
         float distance = Mathf.Sqrt(
-            Mathf.Pow(targetColor.r - playerColor.r, 2) +
-            Mathf.Pow(targetColor.g - playerColor.g, 2) +
-            Mathf.Pow(targetColor.b - playerColor.b, 2)
+            Mathf.Pow(targetColor.r - color.r, 2) +
+            Mathf.Pow(targetColor.g - color.g, 2) +
+            Mathf.Pow(targetColor.b - color.b, 2)
         );
 
-        // Comparar la distancia con el umbral
-        return distance <= matchThreshold;
+        // Convertir la distancia en un porcentaje de precisión
+        float precision = Mathf.Clamp(1 - (distance / maxDistance), 0, 1) * 100;
+        return precision;
+    }
+
+    public float CalculateDamage(float precision)
+    {
+        float damage = 25;
+
+        if (precision >= 98)
+        {
+            damage += (damage * 0.3f); // 30% del daño base
+        }
+        else if (precision >= 80)
+        {
+            damage += (damage * 0.15f); // 15% del daño base
+        }
+        else if (precision >= 60)
+        {
+            damage += (damage * 0.1f); // -10% del daño base
+        }
+        else
+        {
+            damage = 0; // Sin daño si la precisión es inferior al 60%
+        }
+
+        return damage;
     }
 }
 

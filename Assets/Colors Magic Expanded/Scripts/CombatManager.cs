@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour
@@ -14,16 +15,19 @@ public class CombatManager : MonoBehaviour
     public string winner = "";          // Nombre del ganador
 
     [Header("Timer")]
-    public float roundTime = 25f;        // Tiempo para ajustar los colores antes de comparar
+    public float roundTime = 25f;       // Tiempo para ajustar los colores antes de comparar
     private float timer;                // Temporizador para contar el tiempo restante
+    public TextMeshProUGUI timerText;   // Referencia al texto del temporizador
 
-    public int damage = 10;       // Daño infligido al perder una ronda
+    public float baseDamage = 25f;         // Daño infligido al perder una ronda
 
     private void Start()
     {
         // Iniciar el temporizador al comienzo de cada ronda
         timer = roundTime;
         colorMatch.GenerateTargetColor(); // Generar un nuevo color objetivo
+
+        UpdateTimerText();
     }
 
     private void Update()
@@ -31,6 +35,8 @@ public class CombatManager : MonoBehaviour
         if (gameOver) return;           // Si el juego ya terminó, no hacemos nada más
 
         timer -= Time.deltaTime;        // Reducir el temporizador
+        UpdateTimerText();
+
         if (timer <= 0)
         {
             EndRound();                 // Finalizar la ronda si el tiempo se agota
@@ -60,40 +66,43 @@ public class CombatManager : MonoBehaviour
             // Reiniciar la ronda si nadie ha perdido
             timer = roundTime;
             colorMatch.GenerateTargetColor();
+            UpdateTimerText();
         }
     }
 
     private void CompareColors()
     {
-        // Obtener los colores actuales del jugador y del enemigo
         Color playerColor = player.GetCurrentColor();
         Color enemyColor = enemy.GetCurrentColor();
-        Color targetColor = colorMatch.TargetColor;
 
-        // Calcular la distancia entre los colores del jugador y del enemigo con respecto al objetivo
-        float playerDistance = CalculateColorDistance(playerColor, targetColor);
-        float enemyDistance = CalculateColorDistance(enemyColor, targetColor);
+        // Calcular precisión y daño para el jugador
+        float playerPrecision = colorMatch.CalculatePrecision(playerColor);
+        float playerDamage = colorMatch.CalculateDamage(playerPrecision);
 
-        if (playerDistance < enemyDistance)
+        // Calcular precisión y daño para el enemigo
+        float enemyPrecision = colorMatch.CalculatePrecision(enemyColor);
+        float enemyDamage = colorMatch.CalculateDamage(enemyPrecision);
+
+        // Aplicar daño
+        if (playerPrecision >= enemyPrecision)
         {
-            // El jugador inflige daño al enemigo
-            enemy.TakeDamage(damage);
-            Debug.Log($"¡El jugador ha hecho daño! Vida del enemigo: {enemy.GetHealth()}");
+            enemy.TakeDamage(Mathf.RoundToInt(playerDamage));
+            Debug.Log($"Jugador inflige {playerDamage} de daño (Precisión: {playerPrecision}%). Vida del enemigo: {enemy.GetHealth()}");
         }
         else
         {
-            // El enemigo inflige daño al jugador
-            player.TakeDamage(damage);
-            Debug.Log($"¡El enemigo ha hecho daño! Vida del jugador: {player.GetHealth()}");
+            player.TakeDamage(Mathf.RoundToInt(enemyDamage));
+            Debug.Log($"Enemigo inflige {enemyDamage} de daño (Precisión: {enemyPrecision}%). Vida del jugador: {player.GetHealth()}");
         }
     }
 
-    // Método para calcular la distancia entre dos colores usando la distancia euclidiana en el espacio RGB
-    private float CalculateColorDistance(Color color1, Color color2)
+    private void UpdateTimerText()
     {
-        return Mathf.Sqrt(Mathf.Pow(color1.r - color2.r, 2) +
-                         Mathf.Pow(color1.g - color2.g, 2) +
-                         Mathf.Pow(color1.b - color2.b, 2));
+        if (timerText != null)
+        {
+            int seconds = Mathf.CeilToInt(timer); // Redondear hacia arriba para evitar mostrar 0 demasiado pronto
+            timerText.text = $"{seconds}";       // Mostrar solo los segundos
+        }
     }
 }
 
