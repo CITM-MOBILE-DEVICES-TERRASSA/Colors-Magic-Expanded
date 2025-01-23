@@ -12,6 +12,8 @@ public class CombatManager : MonoBehaviour
     public Animator playerAnimator;
     public Animator enemyAnimator;
     ColorsMagicExpanded ColorsMagic;
+    public TextMeshProUGUI playerDamageText; // Texto de daño del jugador
+    public TextMeshProUGUI enemyDamageText;  // Texto de daño del enemigo
 
     [Header("Game State")]
     public bool gameOver = false;       // Indica si el juego ha terminado
@@ -33,6 +35,9 @@ public class CombatManager : MonoBehaviour
         colorMatch.GenerateTargetColor(); // Generar un nuevo color objetivo
 
         UpdateTimerText();
+
+        playerDamageText.gameObject.SetActive(false);
+        enemyDamageText.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -114,14 +119,32 @@ public class CombatManager : MonoBehaviour
         {
             playerAnimator.SetTrigger("isAttacking");
             enemy.TakeDamage(Mathf.RoundToInt(playerDamage));
+            ShowDamageText(playerDamageText, Mathf.RoundToInt(playerDamage));
             Debug.Log($"Jugador inflige {playerDamage} de daño (Precisión: {playerPrecision}%). Vida del enemigo: {enemy.GetHealth()}");
         }
         else
         {
             enemyAnimator.SetTrigger("isAttacking");
             player.TakeDamage(Mathf.RoundToInt(enemyDamage));
+            ShowDamageText(enemyDamageText, Mathf.RoundToInt(enemyDamage));
             Debug.Log($"Enemigo inflige {enemyDamage} de daño (Precisión: {enemyPrecision}%). Vida del jugador: {player.GetHealth()}");
         }
+    }
+
+    private void ShowDamageText(TextMeshProUGUI damageText, int damage)
+    {
+        // Mostrar el texto con el daño
+        damageText.text = $"{damage}";
+        damageText.gameObject.SetActive(true);
+
+        // Desactivar el texto después de 1 segundo
+        StartCoroutine(HideDamageTextAfterDelay(damageText));
+    }
+
+    private IEnumerator HideDamageTextAfterDelay(TextMeshProUGUI damageText)
+    {
+        yield return new WaitForSeconds(3f);
+        damageText.gameObject.SetActive(false);
     }
 
     private void UpdateTimerText()
