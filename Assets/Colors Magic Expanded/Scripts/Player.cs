@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
     {
         if (healthSlider != null)
         {
-            healthSlider.value = maxHealth;
+            healthSlider.value = currentHealth / maxHealth;
         }
         else
         {

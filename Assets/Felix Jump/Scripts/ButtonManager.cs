@@ -30,6 +30,6 @@ public class ButtonManager : MonoBehaviour
 
     public void mainMenu()
     {
-        ColorsMagic.ChangeToScene("Lobby");
+        SceneManager.LoadScene("MetaCME");
     }
 }
