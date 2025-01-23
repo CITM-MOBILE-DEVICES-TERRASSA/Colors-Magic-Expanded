@@ -36,12 +36,13 @@ public class AttackObject : MonoBehaviour
             return;
         }
 
-        //// Comprobar si toca el escudo
-        //if (other.CompareTag("Shield"))
-        //{
-        //    Debug.Log("Escudo tocado. Destruyendo objeto del ataque.");
-        //    Destroy(gameObject); // Destruir el objeto si toca el escudo
-        //    return;
-        //}
+        // Comprobar si toca el escudo
+        if (other.CompareTag("Shield"))
+        {
+            Debug.Log("Escudo tocado. Destruyendo objeto del ataque.");
+
+            Destroy(gameObject); // Destruir el objeto si toca el escudo
+            return;
+        }
     }
 }
