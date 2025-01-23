@@ -85,7 +85,7 @@ public class BallController : MonoBehaviour
                 PlataformaController.instance.timerRunning = false;
 
                 string currentScene = SceneManager.GetActiveScene().name;
-                Score.Instance.HandleLevelCompletion(currentScene, PlataformaController.instance.countdownTime);
+                ScoreFelixJump.Instance.HandleLevelCompletion(currentScene, PlataformaController.instance.countdownTime);
 
                 // Desbloquea el siguiente nivel
                 LevelSelector levelSelector = FindObjectOfType<LevelSelector>();

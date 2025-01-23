@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff24807648dfc78468b545f04f29332e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 3924309465431529738, guid: 4837c6fad35dac84e8e642b9b0f59ae5, type: 3}
+  ball: {fileID: 0}
   platformHeight: 0.8
   smoothTime: 0.3
 --- !u!114 &275035449
