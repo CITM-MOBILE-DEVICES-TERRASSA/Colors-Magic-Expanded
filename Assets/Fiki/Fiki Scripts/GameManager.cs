@@ -57,12 +57,12 @@ public class Manager : MonoBehaviour
     public void LevelCompleted()
     {
         Save();
-        LevelTransitionController.instance.StartTransition(4, 2);
+        LevelTransitionController.instance.StartTransition(10, 2);
     }
     public void LevelSelectorButton()
     {
         Time.timeScale = 1;
-        LevelTransitionController.instance.StartTransition(2, 2);
+        LevelTransitionController.instance.StartTransition(1, 2);
     }
     public void Save()
     {
