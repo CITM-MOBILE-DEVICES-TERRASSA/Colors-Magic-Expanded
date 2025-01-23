@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 1
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -444,13 +445,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -672146021
+    guid: 744787399
     name: UI_FlatAnimated
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: UI_FlatAnimated_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -459,7 +460,7 @@ ScriptedImporter:
         width: 32
         height: 32
       spriteId: 1c3c6212e38aa436ab9c492ade59d802
-    - name: UI_FlatAnimated_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -468,7 +469,7 @@ ScriptedImporter:
         width: 30
         height: 30
       spriteId: c688288d88bd84629ad30bd758f63db3
-    - name: UI_FlatAnimated_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -477,7 +478,7 @@ ScriptedImporter:
         width: 28
         height: 28
       spriteId: 4fb5604b9019e4f8bac0736c6f45da0d
-    - name: UI_FlatAnimated_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -486,7 +487,7 @@ ScriptedImporter:
         width: 30
         height: 30
       spriteId: 9c2b05717ff0c4854a1f2b1c6152cbe5
-    - name: UI_FlatAnimated_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -495,7 +496,7 @@ ScriptedImporter:
         width: 32
         height: 32
       spriteId: d16e1c77723a345e88f92e05624a17c4
-    - name: UI_FlatAnimated_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -504,7 +505,7 @@ ScriptedImporter:
         width: 30
         height: 30
       spriteId: 3ffb16e3311514fdc9609e904395f026
-    - name: UI_FlatAnimated_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -513,7 +514,7 @@ ScriptedImporter:
         width: 28
         height: 28
       spriteId: a3afc50005cfe411fb9f01d76fb45a86
-    - name: UI_FlatAnimated_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -522,7 +523,7 @@ ScriptedImporter:
         width: 30
         height: 30
       spriteId: 323d803e5dd77466889b1ec73ead0a7b
-    - name: UI_FlatAnimated_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -531,7 +532,7 @@ ScriptedImporter:
         width: 32
         height: 28
       spriteId: 009ca675085c74ebfa47a7fd3ca0c099
-    - name: UI_FlatAnimated_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -540,7 +541,7 @@ ScriptedImporter:
         width: 32
         height: 29
       spriteId: f24d88c99e8a347c8b49843b4a726566
-    - name: UI_FlatAnimated_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -549,7 +550,7 @@ ScriptedImporter:
         width: 32
         height: 31
       spriteId: 71132453825a54ab98144fa85996b5bb
-    - name: UI_FlatAnimated_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -558,7 +559,7 @@ ScriptedImporter:
         width: 32
         height: 32
       spriteId: f25e4a99001b8459c88ded7de41469ec
-    - name: UI_FlatAnimated_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -567,7 +568,7 @@ ScriptedImporter:
         width: 32
         height: 28
       spriteId: dffe9c7baf1fc45afbf960033ef0ec9e
-    - name: UI_FlatAnimated_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -576,7 +577,7 @@ ScriptedImporter:
         width: 32
         height: 29
       spriteId: 2a05e05585f744db0b50af16cefe1269
-    - name: UI_FlatAnimated_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -585,7 +586,7 @@ ScriptedImporter:
         width: 32
         height: 31
       spriteId: f5a8f75ed342a48a0996700d67b13056
-    - name: UI_FlatAnimated_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -601,3 +602,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 32, y: 32}
+  previousTextureSize: {x: 128, y: 256}
