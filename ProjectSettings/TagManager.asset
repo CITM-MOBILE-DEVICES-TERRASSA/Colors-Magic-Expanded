@@ -9,6 +9,7 @@ TagManager:
   - AttackObject
   - Shield
   - EnemyUI
+  - PlayerUI
   layers:
   - Default
   - TransparentFX

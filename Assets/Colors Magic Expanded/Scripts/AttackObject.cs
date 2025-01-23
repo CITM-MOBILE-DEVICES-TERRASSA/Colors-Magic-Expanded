@@ -35,6 +35,16 @@ public class AttackObject : MonoBehaviour
             Destroy(gameObject); // Destruir el ataque especial
             return;
         }
+        // Verificar si es el collider del player
+        if (other.CompareTag("PlayerUI"))
+        {
+            //Debug.Log("Collider del enemigo tocado. Ejecutando lógica.");
+
+            PlayerUI playerUI = other.GetComponent<PlayerUI>();
+            playerUI.ResetPlayerColor();
+            Destroy(gameObject); // Destruir el ataque especial
+            return;
+        }
 
         // Comprobar si toca el escudo
         if (other.CompareTag("Shield"))
