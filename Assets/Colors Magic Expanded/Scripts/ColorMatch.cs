@@ -16,13 +16,7 @@ public class ColorMatch : MonoBehaviour
     // Propiedad pública para obtener el color objetivo
     public Color TargetColor => targetColor;
 
-    void Start()
-    {
-        // Generar un color objetivo al iniciar el juego
-        GenerateTargetColor();
-    }
-
-    void GenerateTargetColor()
+    public void GenerateTargetColor()
     {
         // Generar un color aleatorio
         targetColor = new Color(Random.value, Random.value, Random.value);

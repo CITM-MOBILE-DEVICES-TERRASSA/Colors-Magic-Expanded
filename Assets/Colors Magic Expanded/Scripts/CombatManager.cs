@@ -6,7 +6,7 @@ public class CombatManager : MonoBehaviour
 {
     [Header("References")]
     public ColorMatch colorMatch;       // Referencia al script ColorMatch para obtener el color objetivo
-    public RGBSliders playerRGBSliders; // Referencia al jugador
+    public Player player;               // Referencia al jugador
     public Enemy enemy;                 // Referencia al enemigo
 
     [Header("Game State")]
@@ -14,34 +14,59 @@ public class CombatManager : MonoBehaviour
     public string winner = "";          // Nombre del ganador
 
     [Header("Timer")]
-    public float roundTime = 5f;        // Tiempo para ajustar los colores antes de comparar
+    public float roundTime = 25f;        // Tiempo para ajustar los colores antes de comparar
     private float timer;                // Temporizador para contar el tiempo restante
+
+    public int damage = 10;       // Daño infligido al perder una ronda
 
     private void Start()
     {
         // Iniciar el temporizador al comienzo de cada ronda
         timer = roundTime;
+        colorMatch.GenerateTargetColor(); // Generar un nuevo color objetivo
     }
 
     private void Update()
     {
         if (gameOver) return;           // Si el juego ya terminó, no hacemos nada más
 
-        // Reducir el temporizador en cada cuadro
-        timer -= Time.deltaTime;
-        //Debug.Log("Tiempo restante: " + Mathf.Ceil(timer));
-
+        timer -= Time.deltaTime;        // Reducir el temporizador
         if (timer <= 0)
         {
-            // Si el temporizador llega a cero, comparar los colores
-            CompareColors();
+            EndRound();                 // Finalizar la ronda si el tiempo se agota
+        }
+    }
+
+    public void Attack()
+    {
+        if (gameOver) return;           // No permitir atacar si el juego terminó
+        EndRound();                     // Finalizar la ronda antes de tiempo
+    }
+
+    private void EndRound()
+    {
+        // Comparar los colores y aplicar daño
+        CompareColors();
+
+        // Verificar si alguien se quedó sin vida
+        if (player.GetHealth() <= 0 || enemy.GetHealth() <= 0)
+        {
+            gameOver = true;
+            winner = player.GetHealth() <= 0 ? "Enemigo" : "Jugador";
+            Debug.Log($"¡El ganador es: {winner}!");
+        }
+        else
+        {
+            // Reiniciar la ronda si nadie ha perdido
+            timer = roundTime;
+            colorMatch.GenerateTargetColor();
         }
     }
 
     private void CompareColors()
     {
         // Obtener los colores actuales del jugador y del enemigo
-        Color playerColor = playerRGBSliders.GetCurrentColor();
+        Color playerColor = player.GetCurrentColor();
         Color enemyColor = enemy.GetCurrentColor();
         Color targetColor = colorMatch.TargetColor;
 
@@ -49,23 +74,17 @@ public class CombatManager : MonoBehaviour
         float playerDistance = CalculateColorDistance(playerColor, targetColor);
         float enemyDistance = CalculateColorDistance(enemyColor, targetColor);
 
-        // Determinar quién está más cerca del objetivo
         if (playerDistance < enemyDistance)
         {
-            winner = "Jugador";
-            gameOver = true;
-            Debug.Log("¡El jugador ha ganado!");
-        }
-        else if (enemyDistance < playerDistance)
-        {
-            winner = "Enemigo";
-            gameOver = true;
-            Debug.Log("¡El enemigo ha ganado!");
+            // El jugador inflige daño al enemigo
+            enemy.TakeDamage(damage);
+            Debug.Log($"¡El jugador ha hecho daño! Vida del enemigo: {enemy.GetHealth()}");
         }
         else
         {
-            // Si están igual de cerca, podemos considerar que el juego sigue en marcha
-            Debug.Log("El juego sigue...");
+            // El enemigo inflige daño al jugador
+            player.TakeDamage(damage);
+            Debug.Log($"¡El enemigo ha hecho daño! Vida del jugador: {player.GetHealth()}");
         }
     }
 

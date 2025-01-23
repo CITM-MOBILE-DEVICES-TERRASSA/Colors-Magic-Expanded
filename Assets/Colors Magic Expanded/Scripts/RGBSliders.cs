@@ -50,6 +50,33 @@ public class RGBSliders : MonoBehaviour
         }
     }
 
+    public void ResetColor()
+    {
+        // Reinicia los sliders y el color a 0
+        ResetSliders();
+
+        // Actualiza el color actual
+        currentColor = new Color(0, 0, 0); // Negro como predeterminado
+
+        // Refleja el cambio en la interfaz
+        if (colorDisplay != null)
+        {
+            colorDisplay.color = currentColor;
+        }
+
+        Debug.Log("Color reiniciado al predeterminado.");
+    }
+
+    public void ResetSliders()
+    {
+        // Reiniciar los valores de los sliders a 0
+        redSlider.value = 0;
+        greenSlider.value = 0;
+        blueSlider.value = 0;
+
+        Debug.Log("Sliders reiniciados a valores predeterminados.");
+    }
+
     public Color GetCurrentColor()
     {
         return currentColor; // Retorna el color actual del player
