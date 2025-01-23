@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [Header("References")]
     public ColorMatch colorMatch;           // Referencia al script ColorMatch para obtener el color objetivo
     public Image enemyColorDisplay;         // Cuadro para mostrar el color actual de la IA
-    public SpecialAttack specialAttack;     // Referencia al script de Special Attack
+    public EnemySpecialAttack specialAttack;     // Referencia al script de Special Attack
     public Slider healthSlider;              // Referencia al slider de vida
 
     [Header("Settings")]

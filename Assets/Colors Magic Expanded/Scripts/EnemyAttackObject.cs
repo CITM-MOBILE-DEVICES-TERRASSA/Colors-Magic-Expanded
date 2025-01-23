@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackObject : MonoBehaviour
+public class EnemyAttackObject : MonoBehaviour
 {
     private Transform target; // Objetivo del objeto
     private float speed; // Velocidad del movimiento
@@ -25,16 +25,6 @@ public class AttackObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Verificar si es el collider del enemigo
-        if (other.CompareTag("EnemyUI"))
-        {
-            //Debug.Log("Collider del enemigo tocado. Ejecutando lógica.");
-
-            EnemyUI enemyUI = other.GetComponent<EnemyUI>();
-            enemyUI.ResetEnemyColor();
-            Destroy(gameObject); // Destruir el ataque especial
-            return;
-        }
         // Verificar si es el collider del player
         if (other.CompareTag("PlayerUI"))
         {
@@ -47,7 +37,7 @@ public class AttackObject : MonoBehaviour
         }
 
         // Comprobar si toca el escudo
-        if (other.CompareTag("Shield"))
+        if (other.CompareTag("PlayerShield"))
         {
             Debug.Log("Escudo tocado. Destruyendo objeto del ataque.");
 
