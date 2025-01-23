@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+public class LevelManagerCME : MonoBehaviour
 {
     public Button[] levelButtons;
     [SerializeField] private TMPro.TextMeshProUGUI levelText;
     ColorsMagic ColorsMagic;
-    
+
     void Start()
     {
         int levelsUnlocked = PlayerPrefs.GetInt("LevelsUnlocked", 1);
@@ -38,7 +37,7 @@ public class LevelManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("CurrentLevel", level);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("GameP");
+        SceneManager.LoadScene("Gameplay");
         //ColorsMagic.ChangeToScene("GameP");
     }
 
