@@ -49,7 +49,11 @@ public class ColorMatch : MonoBehaviour
     {
         float damage = 25;
 
-        if (precision >= 98)
+        if(precision == 100)
+        {
+            damage += (damage * 0.5f); // 50% del daño base
+        }
+        else if (precision >= 98)
         {
             damage += (damage * 0.3f); // 30% del daño base
         }
@@ -59,7 +63,7 @@ public class ColorMatch : MonoBehaviour
         }
         else if (precision >= 60)
         {
-            damage += (damage * 0.1f); // -10% del daño base
+            damage -= (damage * 0.1f); // -10% del daño base
         }
         else
         {

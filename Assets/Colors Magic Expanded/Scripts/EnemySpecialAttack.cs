@@ -16,6 +16,7 @@ public class EnemySpecialAttack : MonoBehaviour
     public Transform enemy; // Referencia al enemigo
     public Canvas uiCanvas; // Referencia al Canvas principal
     private bool canUseSpecialAttack = true; // Control del cooldown
+    public Animator animator;
 
     public void TriggerSpecialAttack()
     {
@@ -32,6 +33,8 @@ public class EnemySpecialAttack : MonoBehaviour
     private IEnumerator ExecuteSpecialAttack()
     {
         canUseSpecialAttack = false;
+
+        animator.SetTrigger("isAttacking");
 
         for (int i = 0; i < numberOfObjects; i++)
         {

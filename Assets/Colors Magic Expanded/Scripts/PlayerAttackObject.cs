@@ -30,8 +30,8 @@ public class PlayerAttackObject : MonoBehaviour
         {
             //Debug.Log("Collider del enemigo tocado. Ejecutando lógica.");
 
-            PlayerUI playerUI = other.GetComponent<PlayerUI>();
-            playerUI.ResetPlayerColor();
+            EnemyUI enemyUI = other.GetComponent<EnemyUI>();
+            enemyUI.ResetEnemyColor();
             Destroy(gameObject); // Destruir el ataque especial
             return;
         }

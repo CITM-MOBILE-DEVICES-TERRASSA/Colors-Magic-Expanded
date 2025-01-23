@@ -9,6 +9,8 @@ public class CombatManager : MonoBehaviour
     public ColorMatch colorMatch;       // Referencia al script ColorMatch para obtener el color objetivo
     public Player player;               // Referencia al jugador
     public Enemy enemy;                 // Referencia al enemigo
+    public Animator playerAnimator;
+    public Animator enemyAnimator;
 
     [Header("Game State")]
     public bool gameOver = false;       // Indica si el juego ha terminado
@@ -86,11 +88,13 @@ public class CombatManager : MonoBehaviour
         // Aplicar daño
         if (playerPrecision >= enemyPrecision)
         {
+            playerAnimator.SetTrigger("isAttacking");
             enemy.TakeDamage(Mathf.RoundToInt(playerDamage));
             Debug.Log($"Jugador inflige {playerDamage} de daño (Precisión: {playerPrecision}%). Vida del enemigo: {enemy.GetHealth()}");
         }
         else
         {
+            enemyAnimator.SetTrigger("isAttacking");
             player.TakeDamage(Mathf.RoundToInt(enemyDamage));
             Debug.Log($"Enemigo inflige {enemyDamage} de daño (Precisión: {enemyPrecision}%). Vida del jugador: {player.GetHealth()}");
         }

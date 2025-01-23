@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public Image enemyColorDisplay;         // Cuadro para mostrar el color actual de la IA
     public EnemySpecialAttack specialAttack;     // Referencia al script de Special Attack
     public Slider healthSlider;              // Referencia al slider de vida
+    public Animator animator;
 
     [Header("Settings")]
     public float adjustmentSpeed = 0.002f;  // Velocidad de ajuste por movimiento
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
     private float currentHealth;            // Vida actual del enemigo
 
     private bool isReady = false;
+    private bool isDead = false;
 
     private void Start()
     {
@@ -57,13 +59,26 @@ public class Enemy : MonoBehaviour
             currentHealth = 0;
         }
 
-        // Reiniciar el color del jugador
-        ResetColor();
+        animator.SetTrigger("isHurt");
 
-        // Reiniciar los sliders
-        ResetSliders();
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
+        ResetColor();
+        ResetHealth();
 
         Debug.Log("Jugador golpeado por el ataque especial. Vida restante: " + currentHealth);
+    }
+
+    private void Die()
+    {
+        isDead = true;
+
+        // Activar la animación de muerte
+        animator.SetBool("isDead", true);
+        Debug.Log("Enemigo ha muerto.");
     }
 
     public void ResetColor()
@@ -74,7 +89,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("El color del enemigo ha sido reseteado.");
     }
 
-    private void ResetSliders()
+    private void ResetHealth()
     {
         // Reiniciar los sliders al máximo
         if (healthSlider != null)
