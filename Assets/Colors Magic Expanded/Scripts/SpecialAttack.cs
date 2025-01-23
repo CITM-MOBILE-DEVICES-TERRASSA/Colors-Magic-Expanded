@@ -60,24 +60,8 @@ public class SpecialAttack : MonoBehaviour
         // Calcular la posición final de spawn
         Vector3 spawnPosition = enemy.position + spawnOffset;
 
-        // Convertir la posición al espacio local del Canvas (UI)
-        Vector2 canvasPosition;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            uiCanvas.GetComponent<RectTransform>(),
-            Camera.main.WorldToScreenPoint(spawnPosition),
-            Camera.main,
-            out canvasPosition
-        );
-
-        // Instanciar el objeto del ataque como hijo del Canvas
-        GameObject attackObject = Instantiate(attackObjectPrefab, uiCanvas.transform);
-
-        // Asignar la posición local dentro del Canvas
-        RectTransform attackObjectRect = attackObject.GetComponent<RectTransform>();
-        attackObjectRect.anchoredPosition = canvasPosition;
-
-        // Asegurarse de que esté en el layer correcto
-        attackObject.layer = LayerMask.NameToLayer("UI");
+        // Instanciar el objeto del ataque
+        GameObject attackObject = Instantiate(attackObjectPrefab, spawnPosition, Quaternion.identity);
 
         // Asignar el comportamiento para moverse hacia el enemigo
         attackObject.GetComponent<AttackObject>().Initialize(enemy, speed);
