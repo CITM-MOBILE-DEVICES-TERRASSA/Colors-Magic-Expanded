@@ -67,7 +67,7 @@ public class ColorsMagicExpanded : MonoBehaviour
 
     public void ChangeToScene(string sceneName)
     {
-        clicksound.Play();
+        //clicksound.Play();
         if (fadeImage != null)
         {
             StartCoroutine(FadeOutAndChangeScene(sceneName));
