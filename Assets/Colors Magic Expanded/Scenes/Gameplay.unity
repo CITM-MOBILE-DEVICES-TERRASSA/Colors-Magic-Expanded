@@ -154,7 +154,6 @@ MonoBehaviour:
   fadeImage: {fileID: 1428507839}
   fadePrefab: {fileID: 0}
   fadeDuration: 1
-  clicksound: {fileID: 0}
 --- !u!4 &42528614
 Transform:
   m_ObjectHideFlags: 0

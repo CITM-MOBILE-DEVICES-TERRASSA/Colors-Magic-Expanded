@@ -42,7 +42,7 @@ EditorBuildSettings:
     path: Assets/Jumping Jack/Scenes/Meta1.unity
     guid: 3d3b6b3da0fded54eb928d66e853f74e
   - enabled: 1
-    path: Assets/Jumping Jack/Scenes/Level1.unity
+    path: Assets/Scenes/Level1.unity
     guid: 1f5821aee5a4c2a45a9c6eb514719f5b
   - enabled: 1
     path: Assets/Jumping Jack/Scenes/Level2.unity
