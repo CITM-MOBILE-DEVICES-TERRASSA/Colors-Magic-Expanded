@@ -62,4 +62,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Colors Magic Expanded/Scenes/Gameplay.unity
     guid: c8618729130ed534bb9ea1d20acc8605
+  - enabled: 1
+    path: Assets/Colors Magic Expanded/Scenes/MetaCME.unity
+    guid: 7990f50808f4ec14d8ed2b0a13d65654
+  - enabled: 1
+    path: Assets/Colors Magic Expanded/Scenes/VictoryCME.unity
+    guid: 04a05aae5243ac341acdc2ff6e019f4b
+  - enabled: 1
+    path: Assets/Colors Magic Expanded/Scenes/DefeatCME.unity
+    guid: 5b7d704ce0735e348af1851e83a6dbb1
   m_configObjects: {}
