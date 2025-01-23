@@ -76,13 +76,4 @@ public class Shield : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // Comprobar si el escudo toca un objeto del ataque especial
-        if (other.CompareTag("AttackObject"))
-        {
-            Destroy(other.gameObject); // Destruir el objeto del ataque
-        }
-    }
 }

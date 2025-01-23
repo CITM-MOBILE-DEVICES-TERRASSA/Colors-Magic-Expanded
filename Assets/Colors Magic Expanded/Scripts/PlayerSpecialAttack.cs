@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpecialAttack : MonoBehaviour
+public class PlayerSpecialAttack : MonoBehaviour
 {
     [Header("Attack Settings")]
     public GameObject attackObjectPrefab; // Prefab del objeto del ataque
@@ -64,7 +64,7 @@ public class SpecialAttack : MonoBehaviour
         GameObject attackObject = Instantiate(attackObjectPrefab, spawnPosition, Quaternion.identity);
 
         // Asignar el comportamiento para moverse hacia el enemigo
-        attackObject.GetComponent<AttackObject>().Initialize(enemy, speed);
+        attackObject.GetComponent<PlayerAttackObject>().Initialize(enemy, speed);
     }
 }
 
