@@ -25,17 +25,22 @@ public class AttackObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Comprobar si el objeto toca al enemigo
-        if (other.CompareTag("Enemy"))
+        // Comprobar si el objeto tiene el script EnemyUI
+        EnemyUI enemyUI = other.GetComponent<EnemyUI>();
+        if (enemyUI != null)
         {
-            other.GetComponent<Enemy>().ResetColor();
+            Debug.Log("UI del enemigo tocada. Reiniciando color...");
+            enemyUI.ResetEnemyColor();
             Destroy(gameObject); // Destruir el objeto del ataque
+            return;
         }
 
         // Comprobar si toca el escudo
         if (other.CompareTag("Shield"))
         {
+            Debug.Log("Escudo tocado. Destruyendo objeto del ataque.");
             Destroy(gameObject); // Destruir el objeto si toca el escudo
+            return;
         }
     }
 }
